@@ -43,8 +43,8 @@ def load_model(quantization: str = "4bit", cache_dir: Optional[Path] = None):
     print(f"Cache directory: {cache_dir}")
     print("⚡ Using MLX (optimized for Apple Silicon)")
 
-    # Check if model is cached
-    model_cache_name = model_id.replace("/", "--models--")
+    # Check if model is cached (HuggingFace uses models--org--name format)
+    model_cache_name = "models--" + model_id.replace("/", "--")
     model_cache_path = cache_dir / model_cache_name
     if not model_cache_path.exists():
         print("\n" + "="*60)
@@ -61,9 +61,8 @@ def load_model(quantization: str = "4bit", cache_dir: Optional[Path] = None):
     print("\nLoading model into memory...")
 
     try:
-        # Load from cache directory
-        cache_path_str = str(cache_dir)
-        model, processor = load(model_id, tokenizer_config={"cache_dir": cache_path_str})
+        # Load from local cache
+        model, processor = load(model_id)
 
         print(f"\n✓ MLX model loaded successfully!")
         print(f"  Quantization: {quantization}")
