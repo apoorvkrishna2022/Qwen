@@ -1,0 +1,15 @@
+[project]
+name = "qwen-vl-local"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.12.0",
+    "mlx-vlm>=0.3.9",
+    "pillow>=12.0.0",
+    "qwen-vl-utils>=0.0.14",
+    "torch>=2.9.1",
+    "torchvision>=0.24.1",
+    "transformers>=4.57.3",
+]
